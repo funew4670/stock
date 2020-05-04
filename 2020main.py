@@ -36,7 +36,7 @@ def month_year_iter( start_month, start_year, end_month, end_year ):
                     print (directory)
             except requests.exceptions.ConnectionError:
                 r.status_code = "Connection refused"
-            time.sleep(30)
+            time.sleep(random.randint(30,40))
 
 
 
