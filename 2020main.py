@@ -4,27 +4,11 @@ import requests
 import os.path
 import time
 
-path = ""
-StockListPath = "allstocks.csv"
+path = "G:\\code_project\\stock\\2020\\"
+StockListPath = "G:\\code_project\\stock\\2020\\allstocks.csv"
 url = 'http://www.tse.com.tw/exchangeReport/STOCK_DAY'
 stocknum = ''
 
-df = pd.read_csv(StockListPath,header=None)
-data = df[[0,1]]
-
-for index,row in data.iterrows():
-    stocknum=str(row[0])
-    if not os.path.exists(path + stocknum):
-        os.makedirs(path + stocknum)
-
-    startdate=(row[1])
-    if startdate < 19990101:
-        startdate = "19990101"
-    else:
-        startdate = str(startdate)
-    print (stocknum+ " " + startdate)
-    
-    month_year_iter(int(startdate[4:6]), int(startdate[0:4]), 4, 2020)
 
 
 def month_year_iter( start_month, start_year, end_month, end_year ):
@@ -47,9 +31,28 @@ def month_year_iter( start_month, start_year, end_month, end_year ):
 
                 })
                 #r.encoding = 'utf8'
-                with open(directory, "w") as text_file:
+                with open(directory, "wb") as text_file:
                     text_file.write(r.text.encode('utf-8'))
-                    print directory
+                    print (directory)
             except requests.exceptions.ConnectionError:
                 r.status_code = "Connection refused"
             time.sleep(30)
+
+
+
+df = pd.read_csv(StockListPath,header=None)
+data = df[[0,1]]
+
+for index,row in data.iterrows():
+    stocknum=str(row[0])
+    if not os.path.exists(path + stocknum):
+        os.makedirs(path + stocknum)
+
+    startdate=(row[1])
+    if startdate < 19990101:
+        startdate = "19990101"
+    else:
+        startdate = str(startdate)
+    print (stocknum+ " " + startdate)
+    
+    month_year_iter(int(startdate[4:6]), int(startdate[0:4]), 4, 2020)
