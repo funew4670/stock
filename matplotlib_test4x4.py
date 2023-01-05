@@ -63,7 +63,10 @@ fig, axs = plt.subplots(nrows=4, ncols=rowlength, sharex=True)
 for i, (name, group) in enumerate(grouped_df):
     axs[i // 4][i % 4].plot(group['date'], group['value'], label=name)
     axs[i // 4][i % 4].ticklabel_format(style='plain',axis='y')
+    axs[i // 4][i % 4].tick_params(axis='both', which='major', labelsize=6)
+    axs[i // 4][i % 4].tick_params(axis='both', which='minor', labelsize=4)
     axs[i // 4][i % 4].get_yaxis().set_major_formatter( matplotlib.ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
+    axs[i // 4][i % 4].get_xaxis().set_tick_params(rotation=30)
     axs[i // 4][i % 4].legend()
 
 
