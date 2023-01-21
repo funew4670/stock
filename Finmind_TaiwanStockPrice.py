@@ -72,7 +72,7 @@ for sotckID in Top200stock:
     resp_usr = requests.get(url_usr, params=payload)
     usercount = resp_usr.json()["user_count"]  # 使用次數
     request = resp_usr.json()["api_request_limit"]  # api 使用上限
-    print(usercount+"/"+request)
+    print("usercount:"+str(usercount)+"/"+str(request))
     if usercount > 580 :
         exit()
 
