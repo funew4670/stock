@@ -87,6 +87,8 @@ pdfmetrics.registerFont(TTFont('kaiu', "font/kaiu.ttf"))
 fileName = "example.pdf"
 pdfTemplate = SimpleDocTemplate(fileName)
 story = []
+max_paragraphs =2
+count = 0
 
 
 for index, row in Top200stock_sorted.iterrows():
@@ -98,5 +100,9 @@ for index, row in Top200stock_sorted.iterrows():
     imagepath = "pic\\MonthRevenue\\"+str(row["stock_id"]) + '_revenue' +'.png'
     image = Image(imagepath, width=400, height=200)
     story.append(image)
-
+    count += 1
+    if count == max_paragraphs:
+        story.append(FrameBreak())  # Add FrameBreak after every 2 paragraphs
+        count = 0 
+        
 pdfTemplate.build(story)
