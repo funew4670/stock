@@ -94,7 +94,7 @@ for index, row in Top200stock_sorted.iterrows():
     print (row["公司簡稱"])
     print (row["實收資本額(元)"])
     story.append(Paragraph(row["公司簡稱"]+str(row["stock_id"]), styleNormalCustom))
-    story.append(Paragraph("資本額:"+str(row["實收資本額(元)"]), styleNormalCustom_sub))
+    story.append(Paragraph("資本額:"+'{:,}'.format(row["實收資本額(元)"]), styleNormalCustom_sub))
     imagepath = "pic\\MonthRevenue\\"+str(row["stock_id"]) + '_revenue' +'.png'
     image = Image(imagepath, width=400, height=200)
     story.append(image)
