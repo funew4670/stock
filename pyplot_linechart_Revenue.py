@@ -47,11 +47,11 @@ for stockID in Top200stock:
     # only 2330
     #if stockID != "2330"  :
     #    break
-    count += 1
-    if count < 156 :
-        continue
-    print (count)    
-    print (stockID)    
+    #count += 1
+    #if count < 156 :
+    #    continue
+    #print (count)    
+    #print (stockID)    
 
     fname = "MonthRevenue\\"+stockID + '_MonthRevenue_raw' +'.txt'
     data = read_txt_addjsonBracket(fname)
